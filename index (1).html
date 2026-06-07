@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eingang German Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --gold: #c9973a;
+    --gold-light: #e8c97a;
+    --dark-brown: #2a1f0e;
+    --mid-brown: #5c3d1e;
+    --text-dark: #1a1206;
+    --text-mid: #4a3520;
+    --border: rgba(201,151,58,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--text-dark);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900; letter-spacing: 0.02em;
+    color: var(--dark-brown);
+  }
+  .nav-logo img {
+    height: 44px; width: auto; object-fit: contain;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em;
+    text-transform: uppercase; font-weight: 500; color: var(--text-mid);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--dark-brown); color: var(--gold-light) !important;
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--mid-brown) !important; color: var(--gold-light) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    padding: 8rem 4rem 4rem;
+    background: var(--cream);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: 'DEUTSCH';
+    position: absolute; right: -2rem; top: 50%; transform: translateY(-50%) rotate(90deg);
+    font-family: 'Playfair Display', serif; font-size: 12rem; font-weight: 900;
+    color: rgba(201,151,58,0.06); letter-spacing: -0.05em;
+    white-space: nowrap; pointer-events: none;
+  }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    display: inline-block; font-size: 0.72rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); font-weight: 500;
+    border-bottom: 1px solid var(--gold); padding-bottom: 0.3rem; margin-bottom: 1.8rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem); line-height: 1.08; font-weight: 900;
+    color: var(--dark-brown); margin-bottom: 1.5rem;
+  }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-subtitle {
+    font-family: 'Libre Baskerville', serif; font-size: 1.05rem;
+    color: var(--text-mid); line-height: 1.7; max-width: 480px; margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--dark-brown); color: var(--gold-light);
+    padding: 0.9rem 2.2rem; font-size: 0.85rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 500; border: none; cursor: pointer;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold); color: var(--dark-brown); }
+  .btn-outline {
+    border: 1.5px solid var(--dark-brown); color: var(--dark-brown);
+    padding: 0.9rem 2.2rem; font-size: 0.85rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 500; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { background: var(--dark-brown); color: var(--cream); }
+
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+  }
+  .hero-badge-wrap {
+    width: 380px; height: 380px; position: relative;
+  }
+  .hero-ring {
+    width: 100%; height: 100%; border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    animation: rotate 20s linear infinite;
+  }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+  .hero-ring-inner {
+    width: 80%; height: 80%; border-radius: 50%;
+    background: linear-gradient(135deg, var(--dark-brown), var(--mid-brown));
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 20px 60px rgba(42,31,14,0.3);
+    animation: rotate 20s linear infinite reverse;
+  }
+  .hero-ring-inner .flag { font-size: 3.5rem; margin-bottom: 0.5rem; }
+  .hero-ring-inner .institute-name {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
+    color: var(--gold-light); text-align: center; letter-spacing: 0.05em;
+    line-height: 1.3; padding: 0 1rem;
+  }
+  .hero-ring-inner .since {
+    font-size: 0.7rem; letter-spacing: 0.2em; color: rgba(232,201,122,0.6);
+    text-transform: uppercase; margin-top: 0.4rem;
+  }
+  .hero-ring-inner .hero-logo {
+    width: 120px; height: 120px; object-fit: contain; border-radius: 50%;
+    margin-bottom: 0.5rem;
+  }
+  .orbit-dot {
+    position: absolute; width: 12px; height: 12px; border-radius: 50%;
+    background: var(--gold); top: 0; left: 50%; transform: translateX(-50%) translateY(-50%);
+  }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--dark-brown); padding: 2.5rem 4rem;
+    display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900;
+    color: var(--gold-light); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(232,201,122,0.55); margin-top: 0.3rem;
+  }
+  .stat-divider { width: 1px; height: 50px; background: rgba(201,151,58,0.2); }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 4rem; }
+  .section-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900; color: var(--dark-brown); line-height: 1.15; margin-bottom: 1.2rem;
+  }
+  .section-sub {
+    font-family: 'Libre Baskerville', serif; color: var(--text-mid);
+    line-height: 1.8; font-size: 1rem; max-width: 580px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--warm-white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem;
+  }
+  .credential-card {
+    background: var(--cream); border: 1px solid var(--border);
+    padding: 2.5rem; position: relative; overflow: hidden;
+  }
+  .credential-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%; background: var(--gold);
+  }
+  .credential-title {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+    color: var(--dark-brown); margin-bottom: 0.5rem;
+  }
+  .credential-sub {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .credential-text {
+    font-family: 'Libre Baskerville', serif; font-size: 0.95rem;
+    line-height: 1.75; color: var(--text-mid);
+  }
+  .level-badges {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem;
+  }
+  .level-badge {
+    background: var(--dark-brown); color: var(--gold-light);
+    padding: 0.35rem 0.8rem; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.1em; border-radius: 2px;
+  }
+  .about-text .section-sub { max-width: 100%; }
+  .about-text ul {
+    list-style: none; margin-top: 1.5rem;
+  }
+  .about-text ul li {
+    padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+    font-size: 0.95rem; color: var(--text-mid);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .about-text ul li::before {
+    content: '✦'; color: var(--gold); font-size: 0.65rem; flex-shrink: 0;
+  }
+
+  /* ── COURSES ── */
+  #courses { background: var(--cream); }
+  .courses-header { max-width: 600px; margin-bottom: 3rem; }
+  .courses-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+  }
+  .course-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    padding: 2rem; position: relative; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s; cursor: default;
+  }
+  .course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(42,31,14,0.12);
+  }
+  .course-card.featured {
+    background: var(--dark-brown); border-color: transparent;
+  }
+  .course-level {
+    font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900;
+    color: var(--gold); line-height: 1; margin-bottom: 0.3rem;
+  }
+  .course-card.featured .course-level { color: var(--gold-light); }
+  .course-name {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 1rem;
+  }
+  .course-card.featured .course-name { color: rgba(232,201,122,0.65); }
+  .course-desc {
+    font-size: 0.92rem; line-height: 1.65; color: var(--text-mid); margin-bottom: 1.5rem;
+  }
+  .course-card.featured .course-desc { color: rgba(245,240,232,0.75); }
+  .course-meta {
+    display: flex; gap: 1rem; font-size: 0.78rem; color: var(--text-mid);
+  }
+  .course-card.featured .course-meta { color: rgba(232,201,122,0.5); }
+  .course-meta span { display: flex; align-items: center; gap: 0.3rem; }
+  .course-tag {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    background: var(--gold); color: var(--dark-brown);
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px;
+  }
+
+  /* ── WHY ── */
+  #why { background: var(--warm-white); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem;
+  }
+  .why-card {
+    padding: 2rem 1.8rem; border: 1px solid var(--border); background: var(--cream);
+    position: relative;
+  }
+  .why-icon {
+    font-size: 2rem; margin-bottom: 1rem; display: block;
+  }
+  .why-title {
+    font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700;
+    color: var(--dark-brown); margin-bottom: 0.7rem;
+  }
+  .why-text {
+    font-size: 0.9rem; line-height: 1.7; color: var(--text-mid);
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--cream); }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .testi-card {
+    background: var(--warm-white); border: 1px solid var(--border); padding: 2rem;
+  }
+  .testi-quote {
+    font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-size: 1rem; line-height: 1.75; color: var(--text-mid); margin-bottom: 1.5rem;
+  }
+  .testi-quote::before { content: '\201C'; font-size: 3rem; color: var(--gold); line-height: 0; vertical-align: -0.8rem; margin-right: 0.3rem; }
+  .testi-author { font-size: 0.8rem; font-weight: 700; color: var(--dark-brown); letter-spacing: 0.05em; }
+  .testi-level { font-size: 0.72rem; color: var(--gold); margin-top: 0.2rem; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--dark-brown); }
+  #contact .section-title { color: var(--gold-light); }
+  #contact .section-eyebrow { color: rgba(232,201,122,0.6); }
+  #contact .section-sub { color: rgba(245,240,232,0.65); max-width: 100%; }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3rem; align-items: start;
+  }
+  .contact-methods { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+  .contact-method {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 1.2rem 1.5rem; border: 1px solid rgba(201,151,58,0.2);
+    text-decoration: none; transition: all 0.2s; cursor: pointer;
+  }
+  .contact-method:hover { border-color: var(--gold); background: rgba(201,151,58,0.05); }
+  .contact-method-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .wa-icon { background: #25D366; }
+  .email-icon { background: rgba(201,151,58,0.15); border: 1px solid rgba(201,151,58,0.3); }
+  .contact-method-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em;
+    color: rgba(232,201,122,0.5); margin-bottom: 0.2rem;
+  }
+  .contact-method-val {
+    font-size: 0.95rem; color: var(--gold-light); font-weight: 500;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(232,201,122,0.5);
+  }
+  .form-input, .form-select, .form-textarea {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(201,151,58,0.2);
+    color: var(--gold-light); padding: 0.8rem 1rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-select option { background: var(--dark-brown); }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(232,201,122,0.25); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .btn-submit {
+    background: var(--gold); color: var(--dark-brown);
+    padding: 1rem 2rem; font-size: 0.85rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 700; border: none; cursor: pointer;
+    transition: all 0.2s; margin-top: 0.5rem;
+  }
+  .btn-submit:hover { background: var(--gold-light); }
+  .form-note { font-size: 0.75rem; color: rgba(232,201,122,0.35); text-align: center; margin-top: 0.5rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050403; padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    border-top: 1px solid rgba(201,151,58,0.1);
+  }
+  .footer-logo {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900;
+    color: rgba(232,201,122,0.6);
+  }
+  .footer-logo img {
+    height: 36px; width: auto; object-fit: contain; opacity: 0.75;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-note { font-size: 0.75rem; color: rgba(232,201,122,0.25); }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none;
+    font-size: 1.7rem; transition: transform 0.2s, box-shadow 0.2s;
+    animation: wa-pulse 2.5s ease-in-out infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.55); }
+  @keyframes wa-pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 10px rgba(37,211,102,0.08); }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+
+  /* ── DEFINITION BLOCK ── */
+  .hero-definition {
+    background: rgba(201,151,58,0.08); border-left: 3px solid var(--gold);
+    padding: 0.9rem 1.2rem; margin-bottom: 1.8rem; border-radius: 0 4px 4px 0;
+    font-family: 'Libre Baskerville', serif; font-size: 0.95rem;
+    color: var(--text-mid); line-height: 1.6;
+  }
+  .def-word {
+    font-weight: 700; font-style: italic; color: var(--dark-brown); font-size: 1.05rem;
+  }
+
+  /* ── MOBILE LOGO ── */
+  .mobile-hero-logo { display: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-logo img { height: 56px; }
+    section { padding: 4rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-actions { justify-content: center; }
+    .hero-definition { text-align: left; }
+    .stats-strip { padding: 2rem 1.5rem; }
+    .stat-divider { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; padding: 1.5rem; }
+    .mobile-hero-logo {
+      display: flex; justify-content: center; margin-bottom: 2rem;
+    }
+    .mobile-hero-logo img {
+      width: 140px; height: 140px; object-fit: contain; border-radius: 50%;
+      border: 3px solid var(--gold); box-shadow: 0 8px 32px rgba(201,151,58,0.25);
+    }
+  }
+  @media (max-width: 600px) {
+    .why-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact" class="nav-cta">Enroll Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="mobile-hero-logo">
+      <img src="images/logo.jpeg" alt="Eingang German Institute Logo">
+    </div>
+    <span class="hero-eyebrow">Premier German Language Institute</span>
+    <div class="hero-definition fade-up">
+      <span class="def-word">"Eingang"</span> is the German word for "Entrance"—a symbol of new beginnings, opportunities, and growth.
+    </div>
+    <h1 class="hero-title">
+      Master German.<br><em>Open Every Door.</em>
+    </h1>
+    <p class="hero-subtitle">
+      From your very first "Hallo" to professional fluency — expert-led classes from A1 to B2, guided by a certified instructor with qualifications up to C1.
+    </p>
+    <div class="hero-actions">
+      <a href="#courses" class="btn-primary">Explore Courses</a>
+      <a href="https://wa.me/919900980751" class="btn-outline" target="_blank">Chat on WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-badge-wrap">
+      <div class="hero-ring">
+        <div class="hero-ring-inner">
+          <img src="images/logo.jpeg" alt="Eingang German Institute Logo" class="hero-logo">
+          <div class="institute-name">Eingang<br>German Institute</div>
+          <div class="since">Est. in Bengaluru</div>
+        </div>
+      </div>
+      <div class="orbit-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat fade-up">
+    <div class="stat-num">A1–B2</div>
+    <div class="stat-label">Levels Offered</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat fade-up delay-1">
+    <div class="stat-num">C1</div>
+    <div class="stat-label">Instructor Qualification</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat fade-up delay-2">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Personalised Attention</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat fade-up delay-3">
+    <div class="stat-num">CEFR</div>
+    <div class="stat-label">Internationally Aligned</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow fade-up">About the Institute</div>
+  <h2 class="section-title fade-up delay-1">Taught by an Expert.<br>Designed for Learners.</h2>
+  <div class="about-grid">
+    <div class="about-text fade-up delay-1">
+      <p class="section-sub">
+        Eingang German Institute was founded with one vision: to make German language learning accessible, practical, and genuinely enjoyable. Our founder and lead instructor holds a certificate from A1 through C1 — meaning she has walked the entire journey herself and understands every stage of your learning path.
+      </p>
+      <ul>
+        <li>Small batches for maximum interaction and focus</li>
+        <li>Curriculum aligned with Goethe-Institut CEFR standards</li>
+        <li>Strong focus on conversational fluency, not just grammar</li>
+        <li>Flexible timings for students and working professionals</li>
+        <li>Exam preparation support (Goethe, TELC)</li>
+        <li>German culture, media, and real-world vocabulary integrated</li>
+      </ul>
+    </div>
+    <div class="credential-card fade-up delay-2">
+      <div class="credential-title">Instructor Credentials</div>
+      <div class="credential-sub">Rajitha · Lead Instructor</div>
+      <p class="credential-text">
+        Our lead instructor holds an official language certificate spanning the full CEFR scale from <strong>A1 through C1</strong> — a testament to years of dedicated study and deep mastery of the German language. With hands-on experience at every level, she brings empathy, patience, and genuine expertise to every class.
+      </p>
+      <div class="level-badges">
+        <span class="level-badge">A1 ✓</span>
+        <span class="level-badge">A2 ✓</span>
+        <span class="level-badge">B1 ✓</span>
+        <span class="level-badge">B2 ✓</span>
+        <span class="level-badge">C1 ✓</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="courses-header">
+    <div class="section-eyebrow fade-up">What We Offer</div>
+    <h2 class="section-title fade-up delay-1">Courses from A1 to B2</h2>
+    <p class="section-sub fade-up delay-2">Every level builds on the last. Whether you're a complete beginner or working toward professional proficiency, there's a place for you here.</p>
+  </div>
+  <div class="courses-grid">
+    <div class="course-card fade-up">
+      <div class="course-level">A1</div>
+      <div class="course-name">Absolute Beginner</div>
+      <p class="course-desc">Start from zero. Learn greetings, basic vocabulary, present tense verbs, numbers, and everyday expressions for real-life situations.</p>
+      <div class="course-meta">
+        <span>🕐 2 months</span>
+        <span>📖 Goethe-aligned</span>
+      </div>
+    </div>
+    <div class="course-card fade-up delay-1">
+      <div class="course-level">A2</div>
+      <div class="course-name">Elementary</div>
+      <p class="course-desc">Expand your vocabulary and grammar. Discuss daily routines, family, shopping, and travel with growing confidence.</p>
+      <div class="course-meta">
+        <span>🕐 2 months</span>
+        <span>📖 Goethe-aligned</span>
+      </div>
+    </div>
+    <div class="course-card featured fade-up delay-2">
+      <div class="course-tag">Popular</div>
+      <div class="course-level">B1</div>
+      <div class="course-name">Intermediate</div>
+      <p class="course-desc">Understand and express yourself on familiar topics. Ideal for those planning to work, study, or live in German-speaking countries.</p>
+      <div class="course-meta">
+        <span>🕐 2 months</span>
+        <span>📖 Goethe-aligned</span>
+      </div>
+    </div>
+    <div class="course-card fade-up delay-3">
+      <div class="course-level">B2</div>
+      <div class="course-name">Upper Intermediate</div>
+      <p class="course-desc">Engage with complex topics, professional communication, academic texts, and nuanced conversations. Career-ready fluency.</p>
+      <div class="course-meta">
+        <span>🕐 2 months</span>
+        <span>📖 Goethe-aligned</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-eyebrow fade-up">Why Choose Us</div>
+  <h2 class="section-title fade-up delay-1">Learning That Actually Works</h2>
+  <div class="why-grid">
+    <div class="why-card fade-up delay-1">
+      <span class="why-icon">🎓</span>
+      <div class="why-title">Certified Instructor</div>
+      <p class="why-text">Your teacher holds certificates from A1 all the way to C1 — she knows exactly where you'll struggle and how to help you through it.</p>
+    </div>
+    <div class="why-card fade-up delay-2">
+      <span class="why-icon">🗣️</span>
+      <div class="why-title">Conversational Focus</div>
+      <p class="why-text">We go beyond textbooks. Every class is designed to get you speaking, listening, and thinking in German from day one.</p>
+    </div>
+    <div class="why-card fade-up delay-3">
+      <span class="why-icon">📐</span>
+      <div class="why-title">CEFR Structured</div>
+      <p class="why-text">All courses follow the internationally recognised Common European Framework of Reference — your progress is globally acknowledged.</p>
+    </div>
+    <div class="why-card fade-up delay-1">
+      <span class="why-icon">👥</span>
+      <div class="why-title">Small Batches</div>
+      <p class="why-text">Intimate class sizes mean the instructor knows your strengths, tracks your progress, and adapts teaching to your pace.</p>
+    </div>
+    <div class="why-card fade-up delay-2">
+      <span class="why-icon">📅</span>
+      <div class="why-title">Flexible Scheduling</div>
+      <p class="why-text">Morning, evening, and weekend batches available — designed around the busy lives of students and working professionals.</p>
+    </div>
+    <div class="why-card fade-up delay-3">
+      <span class="why-icon">🏆</span>
+      <div class="why-title">Exam Preparation</div>
+      <p class="why-text">Targeted preparation for Goethe-Institut and TELC examinations with mock tests and structured feedback sessions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-eyebrow fade-up">Student Stories</div>
+  <h2 class="section-title fade-up delay-1">What Our Students Say</h2>
+  <div class="testimonials-grid">
+    <div class="testi-card fade-up delay-1">
+      <p class="testi-quote">I was terrified of German grammar. Within three months at Eingang, I was having basic conversations. The patience and clarity of teaching here is unmatched.</p>
+      <div class="testi-author">Priya S.</div>
+      <div class="testi-level">Completed A1 → A2</div>
+    </div>
+    <div class="testi-card fade-up delay-2">
+      <p class="testi-quote">I needed B1 for a job opportunity in Germany. The structured approach and exam-focused coaching here helped me clear it in my first attempt.</p>
+      <div class="testi-author">Rohit K.</div>
+      <div class="testi-level">Cleared Goethe B1</div>
+    </div>
+    <div class="testi-card fade-up delay-3">
+      <p class="testi-quote">The instructor genuinely cares about every student. She adjusted the pace for me when I was struggling and it made all the difference.</p>
+      <div class="testi-author">Anjali M.</div>
+      <div class="testi-level">Currently in B2 Course</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow fade-up">Get in Touch</div>
+  <h2 class="section-title fade-up delay-1">Ready to Begin?</h2>
+  <p class="section-sub fade-up delay-2">Reach out via WhatsApp or email, or fill in the form and we'll get back to you within 24 hours.</p>
+  <div class="contact-grid">
+    <div class="fade-up delay-1">
+      <div class="contact-methods">
+        <a href="https://wa.me/919900980751" class="contact-method" target="_blank">
+          <div class="contact-method-icon wa-icon">💬</div>
+          <div>
+            <div class="contact-method-label">WhatsApp</div>
+            <div class="contact-method-val">+91 99009 80751</div>
+          </div>
+        </a>
+        <a href="mailto:einganggermaninstitute@gmail.com" class="contact-method">
+          <div class="contact-method-icon email-icon">✉️</div>
+          <div>
+            <div class="contact-method-label">Email</div>
+            <div class="contact-method-val">einganggermaninstitute@gmail.com</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form fade-up delay-2">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="e.g. Priya Sharma">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Course of Interest</label>
+        <select class="form-select">
+          <option value="">Select a level...</option>
+          <option>A1 — Absolute Beginner</option>
+          <option>A2 — Elementary</option>
+          <option>B1 — Intermediate</option>
+          <option>B2 — Upper Intermediate</option>
+          <option>Not sure yet — advise me</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message (optional)</label>
+        <textarea class="form-textarea" placeholder="Any questions or background about your learning goals..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="handleSubmit(this)">Send Enquiry →</button>
+      <p class="form-note">We respond within 24 hours. No spam, ever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="images/logo.jpeg" alt="Eingang German Institute Logo">
+  </div>
+  <div class="footer-note">© 2025 Eingang German Institute · Bengaluru, India · All rights reserved</div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/919900980751" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form submit handler
+  function handleSubmit(btn) {
+    const name = document.querySelector('.form-input').value.trim();
+    if (!name) { alert('Please enter your name.'); return; }
+    btn.textContent = '✓ Enquiry Sent!';
+    btn.style.background = '#4caf50';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Send Enquiry →';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+    }, 3000);
+  }
+</script>
+</body>
+</html>
