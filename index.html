@@ -415,6 +415,13 @@
 
   /* ── MOBILE LOGO ── */
   .mobile-hero-logo { display: none; }
+  .mobile-hero-logo img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+  }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
@@ -432,7 +439,7 @@
     .form-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; text-align: center; padding: 1.5rem; }
     .mobile-hero-logo {
-      display: flex; justify-content: center; margin-bottom: 2rem;
+      display: flex; justify-content: center; margin-bottom: 2rem; width: 100%;
     }
   }
   @media (max-width: 600px) {
@@ -446,7 +453,7 @@
 <section class="hero">
   <div class="hero-text">
     <div class="mobile-hero-logo">
-      <img src="logo.jpeg" alt="Eingang German Institute" style="width:280px; height:140px; object-fit:contain; border-radius:6px;">
+      <img src="logo.jpeg" alt="Eingang German Institute">
     </div>
     <span class="hero-eyebrow">Premier German Language Institute</span>
     <div class="hero-definition fade-up">
