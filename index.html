@@ -40,13 +40,16 @@
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    display: flex; align-items: center; gap: 0.6rem;
+    display: flex; align-items: center; gap: 0.75rem;
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem; font-weight: 900; letter-spacing: 0.02em;
     color: var(--dark-brown);
+    text-decoration: none;
   }
-  .nav-logo img {
-    height: 44px; width: auto; object-fit: contain;
+  .nav-logo-emblem {
+    flex-shrink: 0;
+    width: 80px; height: 40px;
+    object-fit: contain; border-radius: 4px;
   }
   .nav-logo span { color: var(--gold); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -67,7 +70,7 @@
   .hero {
     min-height: 100vh;
     display: grid; grid-template-columns: 1fr 1fr; align-items: center;
-    padding: 8rem 4rem 4rem;
+    padding: 4rem 4rem 4rem;
     background: var(--cream);
     position: relative; overflow: hidden;
   }
@@ -130,8 +133,8 @@
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     box-shadow: 0 20px 60px rgba(42,31,14,0.3);
     animation: rotate 20s linear infinite reverse;
+    overflow: hidden;
   }
-  .hero-ring-inner .flag { font-size: 3.5rem; margin-bottom: 0.5rem; }
   .hero-ring-inner .institute-name {
     font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
     color: var(--gold-light); text-align: center; letter-spacing: 0.05em;
@@ -140,10 +143,6 @@
   .hero-ring-inner .since {
     font-size: 0.7rem; letter-spacing: 0.2em; color: rgba(232,201,122,0.6);
     text-transform: uppercase; margin-top: 0.4rem;
-  }
-  .hero-ring-inner .hero-logo {
-    width: 120px; height: 120px; object-fit: contain; border-radius: 50%;
-    margin-bottom: 0.5rem;
   }
   .orbit-dot {
     position: absolute; width: 12px; height: 12px; border-radius: 50%;
@@ -370,12 +369,9 @@
     border-top: 1px solid rgba(201,151,58,0.1);
   }
   .footer-logo {
-    display: flex; align-items: center; gap: 0.5rem;
-    font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900;
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 900;
     color: rgba(232,201,122,0.6);
-  }
-  .footer-logo img {
-    height: 36px; width: auto; object-fit: contain; opacity: 0.75;
   }
   .footer-logo span { color: var(--gold); }
   .footer-note { font-size: 0.75rem; color: rgba(232,201,122,0.25); }
@@ -424,9 +420,8 @@
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
-    .nav-logo img { height: 56px; }
     section { padding: 4rem 1.5rem; }
-    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; text-align: center; }
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem 4rem; text-align: center; }
     .hero-visual { display: none; }
     .hero-actions { justify-content: center; }
     .hero-definition { text-align: left; }
@@ -439,10 +434,6 @@
     .mobile-hero-logo {
       display: flex; justify-content: center; margin-bottom: 2rem;
     }
-    .mobile-hero-logo img {
-      width: 140px; height: 140px; object-fit: contain; border-radius: 50%;
-      border: 3px solid var(--gold); box-shadow: 0 8px 32px rgba(201,151,58,0.25);
-    }
   }
   @media (max-width: 600px) {
     .why-grid { grid-template-columns: 1fr; }
@@ -451,24 +442,11 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-  </div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#courses">Courses</a></li>
-    <li><a href="#why">Why Us</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#contact" class="nav-cta">Enroll Now</a></li>
-  </ul>
-</nav>
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-text">
     <div class="mobile-hero-logo">
-      <img src="logo.jpeg" alt="Eingang German Institute Logo">
+      <img src="images/logo.jpeg" alt="Eingang German Institute" style="width:280px; height:140px; object-fit:contain; border-radius:6px;">
     </div>
     <span class="hero-eyebrow">Premier German Language Institute</span>
     <div class="hero-definition fade-up">
@@ -489,7 +467,7 @@
     <div class="hero-badge-wrap">
       <div class="hero-ring">
         <div class="hero-ring-inner">
-          <img src="logo.jpeg" alt="Eingang German Institute Logo" class="hero-logo">
+          <img src="images/logo.jpeg" alt="Eingang German Institute" style="width:260px; height:140px; object-fit:contain; border-radius:6px; flex-shrink:0; margin-bottom:0.4rem;">
           <div class="institute-name">Eingang<br>German Institute</div>
           <div class="since">Est. in Bengaluru</div>
         </div>
@@ -729,7 +707,8 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    <img src="logo.jpeg" alt="Eingang German Institute Logo">
+    <img src="images/logo.jpeg" alt="Eingang German Institute" style="width:60px; height:30px; object-fit:contain; flex-shrink:0; border-radius:4px;">
+    Eingang <span>German Institute</span>
   </div>
   <div class="footer-note">© 2025 Eingang German Institute · Bengaluru, India · All rights reserved</div>
 </footer>
